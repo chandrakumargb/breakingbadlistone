@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Card from "./card";
 
 function App() {
+  <h1>hello</h1>;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://breakingbadapi.com/api/characters")
+      .then((res) => setData(res.data))
+      .catch((error) => console.log(error));
+  });
+  console.log("data", data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>BREAKING <br></br>  BAD </h1>
+      {data.map((item) => (
+        <div>
+          <Card
+            img={item.img}
+            name={item.name}
+            char_id={item.char_id}
+            birthday={item.birthday}
+            nickname={item.nickname}
+            occupation={item.occupation[0]}
+          />
+        </div>
+      ))}
     </div>
   );
 }
