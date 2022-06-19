@@ -4,7 +4,6 @@ import axios from "axios";
 import Card from "./card";
 
 function App() {
-  <h1>hello</h1>;
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
